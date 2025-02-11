@@ -115,7 +115,7 @@ def kmeans_align(
                         )
             else:
                 for n in range(0, N):
-                    gam_tmp[:, k] = np.linspace(0, 1, M)
+                    gam_tmp[:, n] = np.linspace(0, 1, M)
 
             fw = np.zeros((M, N))
             qw = np.zeros((M, N))
