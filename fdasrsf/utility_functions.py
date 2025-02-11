@@ -466,13 +466,14 @@ def SqrtMeanInverse(gam):
 
     while (lvm[itr] > 0.00000001) and (itr < maxiter):
         mu = geo.exp_map(mu, stp * vbar)
-        itr += 1
+        
         for i in range(0, n):
             out, theta = geo.inv_exp_map(mu, psi[:, i])
             vec[:, i] = out
 
         vbar = vec.mean(axis=1)
         lvm[itr] = geo.L2norm(vbar)
+        itr += 1
 
     gam_mu = cumulative_trapezoid(mu * mu, time, initial=0)
     gam_mu = (gam_mu - gam_mu.min()) / (gam_mu.max() - gam_mu.min())
@@ -1236,3 +1237,4 @@ def svd_flip(u, v, u_based_decision=True):
         u *= signs[newaxis, :]
         v *= signs[:, newaxis]
     return u, v
+
